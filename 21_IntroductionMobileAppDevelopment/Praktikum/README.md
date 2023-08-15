@@ -1,1 +1,0 @@
-![Link Gdocs](https://docs.google.com/document/d/1hb2PIUCLtazjIvYKCbm2q4izeW292U1ri92fIajDbC0/edit)
