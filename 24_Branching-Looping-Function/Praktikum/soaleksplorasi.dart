@@ -1,4 +1,5 @@
 import 'dart:math';
+
 bool isPrime(int n) {
   if (n <= 1) {
     return false;
@@ -10,6 +11,7 @@ bool isPrime(int n) {
   }
   return true;
 }
+
 void perkaliantabel(int n) {
   StringBuffer buffer = StringBuffer();
   for (int i = 1; i <= n; i++) {
@@ -26,15 +28,15 @@ void perkaliantabel(int n) {
   print(buffer.toString());
 }
 
-
 void main() {
+  //yang dibawah ini soal no 1
   int inputNumber = 23;
   if (isPrime(inputNumber)) {
     print("bilangan prima");
   } else {
     print("bukan bilangan prima");
   }
-
-  int inputNumber = 9;
-  perkaliantabel(inputNumber);
+  //yang dibawah ini soal no 2
+  int inputNumbers = 9;
+  perkaliantabel(inputNumbers);
 }

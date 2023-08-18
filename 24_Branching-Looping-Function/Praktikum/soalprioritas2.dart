@@ -1,4 +1,3 @@
-
 void printPiramid(int rows) {
   for (int i = 1; i <= rows; i++) {
     print(" " * (rows - i) + "* " * i);
@@ -6,12 +5,12 @@ void printPiramid(int rows) {
 }
 
 // JamPasir
-void printJamPasir(int rows) {
-  for (int i = 1; i <= rows; i++) {
-    print(" " * (i - 1) + "* " * (rows - i + 1));
+void printJamPasir(int row) {
+  for (int i = 1; i <= row; i++) {
+    print(" " * (i - 1) + "* " * (row - i + 1));
   }
-  for (int i = rows - 1; i >= 1; i--) {
-    print(" " * (i - 1) + "* " * (rows - i + 1));
+  for (int i = row - 1; i >= 1; i--) {
+    print(" " * (i - 1) + "* " * (row - i + 1));
   }
 }
 
@@ -35,14 +34,15 @@ double hitungLuasLingkaran(double jariJari) {
 }
 
 void main() {
+  //soal no 1
+
   int rows = 8;
   printPiramid(rows);
 
-  //pilih salah satu
-
-  int rows = 6;
-  printJamPasir(rows);
-
+//soal no 2
+  int row = 6;
+  printJamPasir(row);
+//soal no 3
   //faktorial
   printFaktorial(10);
   printFaktorial(40);
@@ -50,8 +50,7 @@ void main() {
 
   //tugas function
 
- double jariJari = 5;
+  double jariJari = 5;
   double luas = hitungLuasLingkaran(jariJari);
   print("Luas lingkaran dengan jari-jari $jariJari adalah $luas");
 }
-
