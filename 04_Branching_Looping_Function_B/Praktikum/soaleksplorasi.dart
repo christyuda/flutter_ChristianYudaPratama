@@ -1,6 +1,6 @@
 import 'dart:math';
 
-bool isPrime(int n) {
+bool bilprim(int n) {
   if (n <= 1) {
     return false;
   }
@@ -31,7 +31,7 @@ void perkaliantabel(int n) {
 void main() {
   //yang dibawah ini soal no 1
   int inputNumber = 23;
-  if (isPrime(inputNumber)) {
+  if (bilprim(inputNumber)) {
     print("bilangan prima");
   } else {
     print("bukan bilangan prima");
