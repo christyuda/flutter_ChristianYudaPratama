@@ -1,3 +1,4 @@
+import 'dart:core';
 void printPiramid(int rows) {
   for (int i = 1; i <= rows; i++) {
     print(" " * (rows - i) + "* " * i);
@@ -15,15 +16,15 @@ void printJamPasir(int row) {
 }
 
 void printFaktorial(int n) {
-  int faktorial = factorial(n);
+  BigInt faktorial = factorial(BigInt.from(n));
   print("Faktorial dari $n adalah $faktorial");
 }
 
-int factorial(int n) {
-  if (n == 0 || n == 1) {
-    return 1;
+BigInt factorial(BigInt n) {
+  if (n == BigInt.zero || n == BigInt.one) {
+    return BigInt.one;
   } else {
-    return n * factorial(n - 1);
+    return n * factorial(n - BigInt.one);
   }
 }
 
@@ -47,6 +48,7 @@ void main() {
   printFaktorial(10);
   printFaktorial(40);
   printFaktorial(50);
+
 
   //tugas function
 
