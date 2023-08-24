@@ -1,11 +1,7 @@
 # flutter_ChristianYudaPratama
 
-Pada tanggal 16 Agustus 2023, kita menjalani sebuah sesi pembelajaran yang berfokus pada Git dan pengelolaan cabang (branch) dalam pengembangan perangkat lunak. Dalam sesi ini, kita mendalami bagaimana alat ini mempermudah kolaborasi dalam tim pengembang serta memahami pentingnya pengaturan cabang dalam pengelolaan kode.
+Pada Tanggal 15 dan 16 agustus poin yang dipelajari dari hasil belajar tersebut adalah sebagai berikut
 
-Saat menghadapi penambahan fitur baru dalam proyek, pendekatan yang diambil adalah dengan membuat cabang baru, yang dalam contoh ini disebut sebagai "feature a". Cabang ini dibuat untuk mengisolasi pengembangan fitur tersebut dari cabang utama (main). Tujuannya adalah untuk memungkinkan tim bekerja secara paralel pada fitur tersebut tanpa mengganggu pengembangan utama.
-
-Ketika fitur baru telah dikembangkan dan dianggap siap untuk digabungkan ke dalam cabang utama (main), langkah penting adalah memastikan bahwa fitur tersebut telah divalidasi dengan benar dan telah melalui proses pengujian yang memadai. Namun, dalam proses penggabungan ini, mungkin terjadi konflik kode antara cabang utama dan cabang fitur a. Konflik ini bisa disebabkan oleh perubahan yang dilakukan pada baris kode yang sama oleh dua orang yang bekerja pada kedua cabang tersebut.
-
-Untuk mengatasi konflik ini, diperlukan kolaborasi dan komunikasi antara kedua orang yang terlibat. Mereka perlu bekerja bersama untuk memutuskan bagaimana kode seharusnya disatukan secara harmonis. Proses ini melibatkan meresolusi perbedaan, menggabungkan perubahan dengan hati-hati, dan memastikan bahwa kode yang dihasilkan tetap konsisten dan berfungsi dengan baik. Kreativitas, kompromi, dan pemahaman mendalam tentang konteks pengembangan sangat diperlukan dalam upaya ini.
-
-Kesimpulannya, pembelajaran pada tanggal 16 Agustus 2023 tentang Git dan pengelolaan cabang memberikan wawasan tentang pentingnya alat ini dalam kolaborasi tim pengembang. Pembuatan cabang fitur dan penggabungannya ke dalam cabang utama adalah langkah strategis dalam pengembangan perangkat lunak. Resolusi konflik kode yang timbul memerlukan kerja sama dan pemahaman antar anggota tim, untuk memastikan kelancaran integrasi fitur baru ke dalam proyek secara efisien.
+1. mempelajari bagaimana menggunakan git dengan command line yaitu git add, git commit,git status ,git pull dan git push
+2. mempelajari ketika ada sebuah projek perusahaan dalam persoalan manajemen branch, dimana terdapat main dan development kemudian ketika ada fitur baru hendaknya membuat sebuah branch baru dengan contoh FeaturA dan seterusnya lalu ketika fitur selesai dibuat dan tidak ada kendala maka boleh untuk dihapus dan bisa dimerge ke development terlebih dahulu setelah semua oke baru ke main
+3. mempelajari bagaimana cara mengatasi solusi ketika terjadi konflik pada perubahan
