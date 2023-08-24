@@ -16,9 +16,8 @@ List<String> listinput = ['js', 'js', 'js','golang', 'python','js','js','golang'
 void main(){
  
   print(listUnik);
-    print(listUnik2);
-
-map();
+  print(listUnik2);
+  map();
 
 }
 
