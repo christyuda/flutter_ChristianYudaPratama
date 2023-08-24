@@ -1,15 +1,9 @@
 # flutter_ChristianYudaPratama
 
-Pada tanggal 17 Agustus, tampilan saya penuh dengan prestasi saat saya berhasil menyelesaikan tugas pada "Fundamental Dart" di Section 3. Dalam tugas ini, saya menunjukkan pemahaman mendalam tentang bahasa pemrograman Dart.
+Pada tanggal 17 dan 18 kita diminta untuk self study dan live session mengenai fundamental dart berikut beberapa point yang dapat dituliskan
 
-Saya berhasil mengatasi tantangan untuk menghitung dan merumuskan beberapa bangun geometri, seperti persegi, persegi panjang, lingkaran, dan tabung. Dengan keterampilan saya, saya mampu menyusun rumus-rumus yang tepat dan memahami prinsip-prinsip dasar matematika yang terlibat.
-
-Lebih dari itu, saya juga menciptakan fungsi yang cerdas untuk menentukan apakah suatu kata merupakan palindrom atau tidak. Contoh kata-kata "kasur rusak" dan "mobil balap" menunjukkan bahwa saya mengerti bagaimana memanipulasi string dan memeriksa karakter-karakter dalam urutan yang terbalik.
-
-Sebagai puncak pencapaian saya, saya mengimplementasikan fungsi yang menghitung faktor bilangan dari angka 24. Ini menunjukkan keahlian saya dalam pemrosesan matematika yang lebih kompleks, serta kemampuan saya dalam menghadapi tantangan pemrograman dengan cara yang sistematis dan logis.
-
-Dengan demikian, pada tanggal 17 Agustus, saya bukan hanya menyelesaikan tugas-tugas tersebut, tetapi juga membuktikan kompetensi dan keterampilan saya dalam pemrograman menggunakan Dart. Semangat ini akan terus mendorong saya untuk berkembang dan menghadapi tantangan yang lebih menarik di masa depan.
-
-
-
-
+1. mempelajari tentang bahasa dart dimana dart itu dapat menjamin konsistensi tipe data dan dapat memberi keamanan data bernilai null atau null safety
+2. mempelajari bagaiaman cara fungsi dart dengan menampilkan sebuah teks sederhana untuk dart sendiri harus di fungsikan pada void main(), ada juga tentang komentar diawali dengan /\*\*/ dan bisa juga // saja
+3. mempelajari nilai pada variabel
+4. mempelajari jenis tipe data ada int bilangan bulat,double bilangan pecahan,bool untuk true false, string untuk teks
+5. mempelajari operator yang digunakan ada perkalian, pembagian, penjumlahan, pengurangan ada juga comparison menggabungkan beberapa kondisi contohnya print (2 == 3 && 3 == 2)
