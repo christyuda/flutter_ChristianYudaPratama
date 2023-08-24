@@ -3,12 +3,13 @@
 List<String> inputList =['amuse', 'tommy kaira','spoon','HKS','litchfield','amuse','HKS'];
 List<String> listUnik = removeDuplicates(inputList);
 
-  List<String> inputlist2 = ['JS Racing', 'amuse', 'spoon', 'spoon', 'JS Racing', 'amuse'];
-  List<String> listUnik2 = removeDuplicates(inputlist2);
+List<String> inputlist2 = ['JS Racing', 'amuse', 'spoon', 'spoon', 'JS Racing', 'amuse'];
+List<String> listUnik2 = removeDuplicates(inputlist2);
 
 List<String> removeDuplicates(List<String> inputList) {
-  Set<String> uniqueSet = Set<String>.from(inputList);
-  return uniqueSet.toList();}
+Set<String> setunik = Set<String>.from(inputList);
+return setunik.toList();}
+
 //no 2 frekuensi kemunculan data dalam list
 
 List<String> listinput = ['js', 'js', 'js','golang', 'python','js','js','golang','rust']; 
