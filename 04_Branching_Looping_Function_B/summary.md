@@ -1,11 +1,11 @@
 # flutter_ChristianYudaPratama
 
-Pada tanggal 18 Agustus, saya mendapat kesempatan untuk mendalami konsep-konsep penting dalam pemrograman, yaitu branching (percabangan), looping (perulangan), dan function (fungsi). Dalam perjalanan ini, saya berusaha memahami secara lebih mendalam bagaimana konsep-konsep ini bekerja dalam dunia pemrograman.
+Pada tanggal 21 dan 22 agustus dimana saya belajar mengenai branch , loop dan function dart beberapa poin yang dapat ditangkap
 
-Percabangan (branching) memungkinkan saya untuk membuat keputusan berdasarkan kondisi-kondisi tertentu. Dengan memahami struktur percabangan, saya dapat mengendalikan alur eksekusi program, memilih jalur yang sesuai berdasarkan kondisi yang ada.
-
-Perulangan (looping) adalah konsep yang sangat kuat dalam pemrograman. Dengan perulangan, saya dapat melakukan tugas-tugas yang sama secara berulang, menghemat waktu dan usaha dalam penulisan kode. Saya belajar tentang berbagai jenis loop seperti for loop, while loop, dan do-while loop, serta bagaimana menggunakannya dengan efektif.
-
-Fungsi (function) memungkinkan saya untuk mengorganisasi kode ke dalam blok-blok yang dapat dipanggil dan digunakan kembali. Saya memahami bagaimana membuat fungsi, memberikan argumen, dan mengembalikan nilai dari fungsi tersebut. Dengan fungsi, saya dapat memecah program menjadi bagian-bagian yang lebih kecil dan terkelola dengan baik.
-
-Dalam keseluruhan, Pengetahuan baru ini akan menjadi dasar kuat untuk kemajuan saya dalam memahami dan mengembangkan aplikasi yang lebih kompleks.
+1. mempelajari adanya terkait penggunaan if else dengan proses tertentu jika kondisinya adalah benar atau salah ,ada if,if else, else if
+2. mempelajari bagaimana menggunakan perulangan atau for dimana terdapat nilai awal; nilai benar atau salah atau bool ; dan pengubah nilai awal, ada juga penggunaan while, do while dan break and continue
+3. kemudian mempelajari membuat sebuah fungsi yaitu contohnya void hai(){
+   print('hai');
+   }
+   ada juga tipe data nama fungsi lalu (tipe data dengan parameter)
+   lalu ada juga penggunaan ternary operator
