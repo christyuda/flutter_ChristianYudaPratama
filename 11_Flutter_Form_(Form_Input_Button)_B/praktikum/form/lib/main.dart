@@ -28,8 +28,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class Contact {
-  String name;
-  String phone;
+  late String name;
+  late String phone;
 
   Contact(this.name, this.phone);
 }
@@ -39,26 +39,33 @@ class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController _phoneController = TextEditingController();
   List<Contact> contacts = [];
   int editingIndex = -1;
-
   void _addContact() {
-    final name = _nameController.text;
+    final name = _nameController.text.trim();
     final phone = _phoneController.text;
-    final newContact = Contact(name, phone);
+
     // Validasi Nama
     if (name.isEmpty) {
       _showErrorDialog('Nama harus diisi.');
       return;
     }
+
     final nameParts = name.split(' ');
-    if (nameParts.length < 2 ||
-        !nameParts.every((part) => part[0].toUpperCase() == part[0]) ||
-        name.contains(RegExp(r'[0-9\W]'))) {
-      _showErrorDialog(
-          'Nama harus terdiri dari minimal 2 kata, setiap kata harus dimulai dengan huruf kapital, dan tidak boleh mengandung angka atau karakter khusus.');
+    if (nameParts.length < 2) {
+      _showErrorDialog('Nama harus terdiri dari minimal 2 kata.');
       return;
     }
 
-// Validasi Nomor Telepon
+    for (final part in nameParts) {
+      if (part.isEmpty ||
+          part[0] != part[0].toUpperCase() ||
+          part.contains(RegExp(r'[0-9\W]'))) {
+        _showErrorDialog(
+            'Setiap kata dalam nama harus dimulai dengan huruf kapital dan tidak boleh mengandung angka atau karakter khusus.');
+        return;
+      }
+    }
+
+    // Validasi Nomor Telepon
     if (phone.isEmpty) {
       _showErrorDialog('Nomor telepon harus diisi.');
       return;
@@ -72,8 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
           'Nomor telepon harus dimulai dengan angka 0, terdiri dari angka saja, dan memiliki panjang minimal 8 digit dan maksimal 15 digit.');
       return;
     }
+
     if (editingIndex == -1) {
-      // Jika tidak dalam mode pengeditan, tambahkan kontak baru
       final newContact = Contact(name, phone);
       setState(() {
         contacts.add(newContact);
@@ -81,11 +88,10 @@ class _MyHomePageState extends State<MyHomePage> {
         _phoneController.clear();
       });
     } else {
-      // Jika dalam mode pengeditan, perbarui kontak yang ada
       setState(() {
         contacts[editingIndex].name = name;
         contacts[editingIndex].phone = phone;
-        editingIndex = -1; // Keluar dari mode pengeditan setelah pembaruan
+        editingIndex = -1;
         _nameController.clear();
         _phoneController.clear();
       });
