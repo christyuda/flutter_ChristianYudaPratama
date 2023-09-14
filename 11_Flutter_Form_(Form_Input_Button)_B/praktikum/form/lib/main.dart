@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Contacts App',
       theme: ThemeData(
+
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(),
@@ -136,7 +137,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Contacts'),
+        title: const Text('Contacts'),
+        centerTitle: true,
         actions: [
           IconButton(
             icon: Icon(Icons.info),
