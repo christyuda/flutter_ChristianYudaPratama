@@ -46,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController _colorController = TextEditingController();
   final TextEditingController _fileInputController = TextEditingController();
   List<Contact> contacts = [];
+  int editingIndex = -1;
 
   Color _selectedColor = Colors.red;
 
@@ -120,11 +121,6 @@ class _MyHomePageState extends State<MyHomePage> {
     final date = _dateInputController.text;
     final color = _selectedColor;
     final fileName = _fileInputController.text;
-    print('Name: $name');
-    print('Phone: $phone');
-    print('Date: $date');
-    print('Color: $color');
-    print('File Name: $fileName');
 
     // Validasi data
 
@@ -136,7 +132,12 @@ class _MyHomePageState extends State<MyHomePage> {
     // Tambahkan ke daftar kontak
     final newContact = Contact(name, phone, date, color, fileName);
     setState(() {
-      contacts.add(newContact);
+      if (editingIndex == -1) {
+        contacts.add(newContact);
+      } else {
+        contacts[editingIndex] = newContact;
+        editingIndex = -1;
+      }
     });
 
     // Bersihkan field input
@@ -161,6 +162,48 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.of(context).pop();
               },
               child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editContact(int index) {
+    final contact = contacts[index];
+    setState(() {
+      _nameController.text = contact.name;
+      _phoneController.text = contact.phone;
+      _dateInputController.text = contact.date;
+      _selectedColor = contact.color;
+      _fileInputController.text = contact.fileName;
+      editingIndex = index;
+    });
+  }
+
+  void _deleteContact(int index) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Delete Contact'),
+          content: Text('Apakah Anda yakin ingin menghapus kontak ini?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Batal'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  contacts.removeAt(index);
+                  editingIndex = -1;
+                });
+                Navigator.of(context).pop();
+              },
+              child: Text('Hapus'),
             ),
           ],
         );
@@ -284,7 +327,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   ),
                   child: Text(
-                    'Submit',
+                    editingIndex == -1 ? 'Submit' : 'Update',
                     style: TextStyle(fontSize: 14),
                   ),
                 ),
@@ -313,8 +356,22 @@ class _MyHomePageState extends State<MyHomePage> {
                         Text('File: ${contact.fileName}'),
                       ],
                     ),
-                    trailing: CircleAvatar(
-                      backgroundColor: contact.color,
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.edit),
+                          onPressed: () {
+                            _editContact(index);
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.delete),
+                          onPressed: () {
+                            _deleteContact(index);
+                          },
+                        ),
+                      ],
                     ),
                   );
                 },
