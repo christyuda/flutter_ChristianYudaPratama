@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:intl/intl.dart';
+import 'package:file_picker/file_picker.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,6 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   List<Color> _selectedColors = [Colors.red]; // Default selected color is red
   TextEditingController _dateInputController = TextEditingController();
+  TextEditingController _fileInputController = TextEditingController();
 
   @override
   void initState() {
@@ -105,6 +107,17 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  void _pickFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+    if (result != null) {
+      PlatformFile file = result.files.first;
+      setState(() {
+        _fileInputController.text = file.name;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -171,6 +184,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       ? _selectedColors[0]
                       : Colors.blue,
                 ),
+              ),
+              TextField(
+                controller: _fileInputController,
+                decoration: InputDecoration(
+                  icon: Icon(Icons.attach_file),
+                  labelText: "Tempat Upload File",
+                ),
+                readOnly: true,
+              ),
+              TextButton(
+                onPressed: _pickFile,
+                child: Text('Select File'),
               ),
             ],
           ),
