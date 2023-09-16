@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     if (pickedDate != null) {
-      String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+      String formattedDate = DateFormat('dd-MM-yyyy').format(pickedDate);
       setState(() {
         _dateInputController.text = formattedDate;
       });

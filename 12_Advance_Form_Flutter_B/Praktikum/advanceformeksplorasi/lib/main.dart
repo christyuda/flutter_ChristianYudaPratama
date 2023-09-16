@@ -43,81 +43,17 @@ class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _dateInputController = TextEditingController();
-  List<Color> _selectedColors = [Colors.red];
-  String _selectedFileName = '';
+  final TextEditingController _colorController = TextEditingController();
+  final TextEditingController _fileInputController = TextEditingController();
   List<Contact> contacts = [];
-  int editingIndex = -1;
 
-  void _addContact() {
-    final name = _nameController.text.trim();
-    final phone = _phoneController.text;
-    final date = _dateInputController.text;
-    final color = _selectedColors.isNotEmpty ? _selectedColors[0] : Colors.red;
-    final fileName = _selectedFileName;
+  Color _selectedColor = Colors.red;
 
-    if (editingIndex == -1) {
-      final newContact = Contact(name, phone, date, color, fileName);
-      setState(() {
-        contacts.add(newContact);
-        _nameController.clear();
-        _phoneController.clear();
-        _dateInputController.clear();
-        _selectedColors = [Colors.red];
-        _selectedFileName = '';
-      });
-    } else {
-      setState(() {
-        contacts[editingIndex].name = name;
-        contacts[editingIndex].phone = phone;
-        contacts[editingIndex].date = date;
-        contacts[editingIndex].color = color;
-        contacts[editingIndex].fileName = fileName;
-        editingIndex = -1;
-        _nameController.clear();
-        _phoneController.clear();
-        _dateInputController.clear();
-        _selectedColors = [Colors.red];
-        _selectedFileName = '';
-      });
-    }
-  }
-
-  void _showErrorDialog(String message) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('Error'),
-          content: Text(message),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void _deleteContact(int index) {
-    setState(() {
-      contacts.removeAt(index);
-    });
-  }
-
-  void _editContact(int index) {
-    setState(() {
-      final contact = contacts[index];
-      _nameController.text = contact.name;
-      _phoneController.text = contact.phone;
-      _dateInputController.text = contact.date;
-      _selectedColors = [contact.color];
-      _selectedFileName = contact.fileName;
-      editingIndex = index;
-    });
+  @override
+  void initState() {
+    super.initState();
+    _dateInputController.text = '';
+    _colorController.text = '';
   }
 
   void _selectDate(BuildContext context) async {
@@ -141,29 +77,18 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Pick Colors'),
-          content: Column(
-            children: <Widget>[
-              Container(
-                width: double.infinity,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: _selectedColors.isNotEmpty
-                      ? _selectedColors[0]
-                      : Colors.white,
-                  border: Border.all(color: Colors.black),
-                ),
-              ),
-              SizedBox(height: 16.0),
-              MultipleChoiceBlockPicker(
-                pickerColors: _selectedColors,
-                onColorsChanged: (List<Color> colors) {
-                  setState(() {
-                    _selectedColors = colors;
-                  });
-                },
-              ),
-            ],
+          title: const Text('Pick Color'),
+          content: SingleChildScrollView(
+            child: ColorPicker(
+              pickerColor: _selectedColor,
+              onColorChanged: (Color color) {
+                setState(() {
+                  _selectedColor = color;
+                });
+              },
+              showLabel: true,
+              pickerAreaHeightPercent: 0.8,
+            ),
           ),
           actions: <Widget>[
             TextButton(
@@ -178,91 +103,223 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void _pickFile(BuildContext context) async {
+  void _pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     if (result != null) {
-      String fileName = result.files.first.name ?? '';
+      PlatformFile file = result.files.first;
       setState(() {
-        _selectedFileName = fileName;
+        _fileInputController.text = file.name;
       });
-    } else {
-      // User canceled the file picker
-      print('File picker canceled');
     }
+  }
+
+  void _addContact() {
+    final name = _nameController.text.trim();
+    final phone = _phoneController.text;
+    final date = _dateInputController.text;
+    final color = _selectedColor;
+    final fileName = _fileInputController.text;
+    print('Name: $name');
+    print('Phone: $phone');
+    print('Date: $date');
+    print('Color: $color');
+    print('File Name: $fileName');
+
+    // Validasi data
+
+    if (name.isEmpty || phone.isEmpty || date.isEmpty || fileName.isEmpty) {
+      _showErrorDialog('Semua field harus diisi.');
+      return;
+    }
+
+    // Tambahkan ke daftar kontak
+    final newContact = Contact(name, phone, date, color, fileName);
+    setState(() {
+      contacts.add(newContact);
+    });
+
+    // Bersihkan field input
+    _nameController.clear();
+    _phoneController.clear();
+    _dateInputController.clear();
+    _colorController.clear();
+    _selectedColor = Colors.red;
+    _fileInputController.clear();
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Error'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //...
+      appBar: AppBar(
+        title: const Text('Contacts'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.info),
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text('Deskripsi'),
+                    content: Text('Ini adalah aplikasi Kontak Flutter.'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Tutup'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            //...
-            Stack(
-              alignment: Alignment.topRight,
-              children: [
-                TextField(
-                  controller: _dateInputController,
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.calendar_today),
-                    labelText: "Enter Date",
-                  ),
-                  readOnly: true,
-                  onTap: () => _selectDate(context),
+            Center(
+              child: Text(
+                'Create New Contact',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(height: 10),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    TextField(
+                      controller: _nameController,
+                      decoration: InputDecoration(
+                        labelText: 'Nama',
+                        hintText: 'Masukkan nama kontak',
+                      ),
+                    ),
+                    TextField(
+                      controller: _phoneController,
+                      decoration: InputDecoration(
+                        labelText: 'Nomor Telepon',
+                        hintText: 'Masukkan no telepon',
+                      ),
+                    ),
+                    TextField(
+                      controller: _dateInputController,
+                      decoration: InputDecoration(
+                        labelText: 'Tanggal',
+                        hintText: 'Pilih tanggal',
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.calendar_today),
+                          onPressed: () => _selectDate(context),
+                        ),
+                      ),
+                      readOnly: true,
+                    ),
+                    TextField(
+                      controller: _colorController,
+                      decoration: InputDecoration(
+                        labelText: 'Warna',
+                        hintText: 'Pilih warna',
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.color_lens),
+                          onPressed: () => _pickColors(context),
+                        ),
+                      ),
+                      readOnly: true,
+                    ),
+                    TextField(
+                      controller: _fileInputController,
+                      decoration: InputDecoration(
+                        labelText: 'File',
+                        hintText: 'Pilih file',
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.attach_file),
+                          onPressed: () => _pickFile(),
+                        ),
+                      ),
+                      readOnly: true,
+                    ),
+                  ],
                 ),
-                TextButton(
-                  onPressed: () => _selectDate(context),
-                  child: Text('Select'),
+              ),
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton(
+                  onPressed: _addContact,
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.deepPurple[700],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  ),
+                  child: Text(
+                    'Submit',
+                    style: TextStyle(fontSize: 14),
+                  ),
                 ),
               ],
             ),
             SizedBox(height: 20),
-            Text(
-              'Colors',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 12,
+            Center(
+              child: Text(
+                'List Contacts',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(height: 8),
-            Container(
-              width: double.infinity,
-              height: 150,
-              decoration: BoxDecoration(
-                color: _selectedColors.isNotEmpty
-                    ? _selectedColors[0]
-                    : Colors.white,
-                border: Border.all(color: Colors.black),
+            Expanded(
+              child: ListView.builder(
+                itemCount: contacts.length,
+                itemBuilder: (context, index) {
+                  final contact = contacts[index];
+                  return ListTile(
+                    leading: Icon(Icons.person),
+                    title: Text(contact.name),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Phone: ${contact.phone}'),
+                        Text('Date: ${contact.date}'),
+                        Text('File: ${contact.fileName}'),
+                      ],
+                    ),
+                    trailing: CircleAvatar(
+                      backgroundColor: contact.color,
+                    ),
+                  );
+                },
               ),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => _pickColors(context),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text('Pick Colors'),
-                  const SizedBox(width: 5),
-                  Icon(Icons.color_lens),
-                ],
-              ),
-              style: ElevatedButton.styleFrom(
-                primary: _selectedColors.isNotEmpty
-                    ? _selectedColors[0]
-                    : Colors.blue,
-              ),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => _pickFile(context),
-              child: Text('Pick File'),
-            ),
-            SizedBox(height: 20),
-            //...
           ],
         ),
       ),
