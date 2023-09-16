@@ -121,6 +121,11 @@ class _MyHomePageState extends State<MyHomePage> {
     final date = _dateInputController.text;
     final color = _selectedColor;
     final fileName = _fileInputController.text;
+    print('Name: $name');
+    print('Phone: $phone');
+    print('Date: $date');
+    print('Color: $color');
+    print('File Name: $fileName');
 
     // Validasi data
 
