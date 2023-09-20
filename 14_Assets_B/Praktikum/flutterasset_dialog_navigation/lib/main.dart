@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:flutterasset_dialog_navigation/galeri.dart';
 import 'package:intl/intl.dart';
 import 'package:file_picker/file_picker.dart';
 
 void main() {
-  runApp(const MyApp());
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+  runApp(
+    MaterialApp(
+      routes: {
+        '/contact': (context) => MyHomePage(), // Halaman Contact
+        '/galeri': (context) =>
+            GaleriPage(), // Halaman Galeri (Anda perlu membuat GaleriPage terlebih dahulu)
+      },
+      home: MyHomePage(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -246,6 +258,35 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           ),
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Menu'),
+            ),
+            ListTile(
+              title: Text('Contact'),
+              onTap: () {
+                Navigator.pop(context); // Tutup drawer
+                Navigator.pushNamed(
+                    context, '/contact'); // Pindah ke halaman Contact
+              },
+            ),
+            ListTile(
+              title: Text('Galeri'),
+              onTap: () {
+                Navigator.pop(context); // Tutup drawer
+                Navigator.pushNamed(
+                    context, '/galeri'); // Pindah ke halaman Galeri
+              },
+            ),
+          ],
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
