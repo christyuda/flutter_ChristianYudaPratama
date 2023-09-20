@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterasset_dialog_navigation/DetailPage.dart';
 
 class GaleriPage extends StatefulWidget {
   @override
@@ -11,6 +12,8 @@ class _GaleriPageState extends State<GaleriPage> {
     'gambar1.jpg',
     'gambar2.jpg',
     'gambar3.jpg',
+    'gambar4.jpg',
+
     // Tambahkan lebih banyak nama file gambar sesuai kebutuhan Anda
   ];
 
@@ -84,7 +87,12 @@ class _GaleriPageState extends State<GaleriPage> {
   }
 
   void _navigateToDetailPage(BuildContext context, String image) {
-    // Implementasikan navigasi ke halaman detail sesuai kebutuhan Anda
-    // Anda dapat menggunakan Navigator.push untuk berpindah ke halaman detail.
+    // Pindah ke halaman detail dengan mengirimkan gambar yang dipilih
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetailPage(selectedImage: 'assets/img/$image'),
+      ),
+    );
   }
 }
