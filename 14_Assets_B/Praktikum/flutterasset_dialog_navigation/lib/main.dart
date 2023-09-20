@@ -10,9 +10,8 @@ void main() {
   runApp(
     MaterialApp(
       routes: {
-        '/contact': (context) => MyHomePage(), // Halaman Contact
-        '/galeri': (context) =>
-            GaleriPage(), // Halaman Galeri (Anda perlu membuat GaleriPage terlebih dahulu)
+        '/contact': (context) => MyHomePage(),
+        '/galeri': (context) => GaleriPage(),
       },
       home: MyHomePage(),
     ),
@@ -146,7 +145,6 @@ class _MyHomePageState extends State<MyHomePage> {
       return;
     }
 
-    // Tambahkan ke daftar kontak
     final newContact = Contact(name, phone, date, color, fileName);
     setState(() {
       if (editingIndex == -1) {
@@ -157,7 +155,6 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     });
 
-    // Bersihkan field input
     _nameController.clear();
     _phoneController.clear();
     _dateInputController.clear();
@@ -272,17 +269,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: Text('Contact'),
               onTap: () {
-                Navigator.pop(context); // Tutup drawer
-                Navigator.pushNamed(
-                    context, '/contact'); // Pindah ke halaman Contact
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/contact');
               },
             ),
             ListTile(
               title: Text('Galeri'),
               onTap: () {
-                Navigator.pop(context); // Tutup drawer
-                Navigator.pushNamed(
-                    context, '/galeri'); // Pindah ke halaman Galeri
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/galeri');
               },
             ),
           ],

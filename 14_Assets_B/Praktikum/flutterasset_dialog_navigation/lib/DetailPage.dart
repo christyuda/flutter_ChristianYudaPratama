@@ -22,10 +22,11 @@ class DetailPage extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.5,
           padding: EdgeInsets.all(40.0),
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, 0.9)),
+          decoration:
+              BoxDecoration(color: Color.fromRGBO(115, 142, 211, 0.898)),
           child: Center(
             child: Text(
-              'Selamat datang pada halaman details',
+              'Selamat datang halaman details',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -60,12 +61,6 @@ class DetailPage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context); // Kembali ke halaman GaleriPage
-            },
-            child: Text('Kembali'),
-          ),
         ],
       ),
     );
