@@ -7,14 +7,11 @@ class GaleriPage extends StatefulWidget {
 }
 
 class _GaleriPageState extends State<GaleriPage> {
-  // Daftar nama file gambar di dalam folder assets/img
   List<String> gambar = [
     'gambar1.jpg',
     'gambar2.jpg',
     'gambar3.jpg',
     'gambar4.jpg',
-
-    // Tambahkan lebih banyak nama file gambar sesuai kebutuhan Anda
   ];
 
   @override

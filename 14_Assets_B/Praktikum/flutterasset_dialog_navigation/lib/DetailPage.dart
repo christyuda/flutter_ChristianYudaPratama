@@ -40,7 +40,7 @@ class DetailPage extends StatelessWidget {
           top: 60.0,
           child: InkWell(
             onTap: () {
-              Navigator.pop(context); // Kembali ke halaman GaleriPage
+              Navigator.pop(context);
             },
             child: Icon(Icons.arrow_back, color: Colors.white),
           ),

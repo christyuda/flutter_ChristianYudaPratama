@@ -138,8 +138,6 @@ class _MyHomePageState extends State<MyHomePage> {
     print('Color: $color');
     print('File Name: $fileName');
 
-    // Validasi data
-
     if (name.isEmpty || phone.isEmpty || date.isEmpty || fileName.isEmpty) {
       _showErrorDialog('Semua field harus diisi.');
       return;
