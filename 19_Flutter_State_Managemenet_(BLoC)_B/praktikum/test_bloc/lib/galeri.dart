@@ -32,7 +32,7 @@ class _GaleriPageState extends State<GaleriPage> {
             },
             child: Card(
               child: Image.asset(
-                'assets/img/${gambar[index]}', // Menggunakan path gambar dari folder assets/img
+                'assets/img/${gambar[index]}',
                 width: 200,
                 height: 200,
               ),
@@ -52,7 +52,7 @@ class _GaleriPageState extends State<GaleriPage> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Image.asset(
-                'assets/img/$image', // Menggunakan path gambar dari folder assets/img
+                'assets/img/$image',
                 width: 200,
                 height: 200,
               ),
@@ -62,15 +62,14 @@ class _GaleriPageState extends State<GaleriPage> {
                 children: <Widget>[
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pop(context); // Tutup bottom sheet
-                      _navigateToDetailPage(
-                          context, image); // Pindah ke halaman detail
+                      Navigator.pop(context);
+                      _navigateToDetailPage(context, image);
                     },
                     child: Text('Ya'),
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pop(context); // Tutup bottom sheet
+                      Navigator.pop(context);
                     },
                     child: Text('Tidak'),
                   ),
@@ -84,7 +83,6 @@ class _GaleriPageState extends State<GaleriPage> {
   }
 
   void _navigateToDetailPage(BuildContext context, String image) {
-    // Pindah ke halaman detail dengan mengirimkan gambar yang dipilih
     Navigator.push(
       context,
       MaterialPageRoute(

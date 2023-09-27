@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_bloc/main.dart';
 
-// 1. Buat Event
 abstract class ContactEvent {}
 
 class AddContactEvent extends ContactEvent {
@@ -23,7 +22,6 @@ class DeleteContactEvent extends ContactEvent {
   DeleteContactEvent(this.index);
 }
 
-// 2. Buat State
 abstract class ContactState {}
 
 class ContactInitialState extends ContactState {}
@@ -40,25 +38,21 @@ class ContactErrorState extends ContactState {
   ContactErrorState(this.errorMessage);
 }
 
-// 3. Buat Bloc
 class ContactBloc extends Bloc<ContactEvent, ContactState> {
   List<Contact> contacts = [];
 
   ContactBloc() : super(ContactInitialState()) {
     on<AddContactEvent>((event, emit) {
-      // Handler untuk event AddContactEvent
       contacts.add(event.contact);
       emit(ContactLoadedState(List.from(contacts)));
     });
 
     on<EditContactEvent>((event, emit) {
-      // Handler untuk event EditContactEvent
       contacts[event.index] = event.contact;
       emit(ContactLoadedState(List.from(contacts)));
     });
 
     on<DeleteContactEvent>((event, emit) {
-      // Handler untuk event DeleteContactEvent
       contacts.removeAt(event.index);
       emit(ContactLoadedState(List.from(contacts)));
     });
