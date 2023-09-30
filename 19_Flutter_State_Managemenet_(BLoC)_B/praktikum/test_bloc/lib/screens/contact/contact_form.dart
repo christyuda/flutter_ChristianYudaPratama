@@ -2,6 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:intl/intl.dart';
+import 'package:test_bloc/models/contact.dart'; // Import model Contact
 
 class ContactForm extends StatefulWidget {
   @override
@@ -9,13 +10,16 @@ class ContactForm extends StatefulWidget {
 }
 
 class _ContactFormState extends State<ContactForm> {
+  // Controller untuk input fields
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _dateInputController = TextEditingController();
   final TextEditingController _fileInputController = TextEditingController();
 
+  // Variabel untuk menyimpan warna yang dipilih
   Color _selectedColor = Colors.red;
 
+  // Metode untuk menampilkan dialog pemilihan tanggal
   void _selectDate(BuildContext context) async {
     DateTime? pickedDate = await showDatePicker(
       context: context,
@@ -26,12 +30,11 @@ class _ContactFormState extends State<ContactForm> {
 
     if (pickedDate != null) {
       String formattedDate = DateFormat('dd-MM-yyyy').format(pickedDate);
-      setState(() {
-        _dateInputController.text = formattedDate;
-      });
+      _dateInputController.text = formattedDate;
     }
   }
 
+  // Metode untuk menampilkan dialog pemilihan warna
   void _pickColors(BuildContext context) {
     showDialog(
       context: context,
@@ -63,24 +66,24 @@ class _ContactFormState extends State<ContactForm> {
     );
   }
 
+  // Metode untuk mengambil file
   void _pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     if (result != null) {
       PlatformFile file = result.files.first;
-      setState(() {
-        _fileInputController.text = file.name;
-      });
+      _fileInputController.text = file.name;
     }
   }
 
+  // Metode untuk menambahkan atau mengedit kontak
   void _addOrEditContact() {
     final name = _nameController.text.trim();
     final phone = _phoneController.text;
     final date = _dateInputController.text;
     final fileName = _fileInputController.text;
-
     if (name.isEmpty || phone.isEmpty || date.isEmpty || fileName.isEmpty) {
+      // Tampilkan pesan kesalahan jika ada input yang kosong
       showDialog(
         context: context,
         builder: (context) {
@@ -98,11 +101,19 @@ class _ContactFormState extends State<ContactForm> {
           );
         },
       );
-      return;
+      return; // Keluar dari metode jika ada input yang kosong
     }
 
-    // Implementasikan logika penambahan atau pengeditan kontak di sini
-    // Anda dapat menggunakan nilai 'name', 'phone', 'date', '_selectedColor', dan 'fileName' yang telah Anda ambil di atas.
+    // Buat objek Contact dari data yang diinputkan
+    Contact newContact = Contact(
+      name: name,
+      phone: phone,
+      date: date,
+      color: _selectedColor,
+      fileName: fileName,
+    );
+
+    // Lakukan sesuatu dengan objek newContact, misalnya tambahkan ke daftar kontak
 
     // Setelah selesai, Anda dapat mereset nilai-nilai dalam input fields seperti ini:
     _nameController.clear();

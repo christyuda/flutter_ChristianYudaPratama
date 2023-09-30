@@ -1,42 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_bloc/main.dart';
-
-abstract class ContactEvent {}
-
-class AddContactEvent extends ContactEvent {
-  final Contact contact;
-
-  AddContactEvent(this.contact);
-}
-
-class EditContactEvent extends ContactEvent {
-  final int index;
-  final Contact contact;
-
-  EditContactEvent(this.index, this.contact);
-}
-
-class DeleteContactEvent extends ContactEvent {
-  final int index;
-
-  DeleteContactEvent(this.index);
-}
-
-abstract class ContactState {}
-
-class ContactInitialState extends ContactState {}
-
-class ContactLoadedState extends ContactState {
-  final List<Contact> contacts;
-
-  ContactLoadedState(this.contacts);
-}
-
-class ContactErrorState extends ContactState {
-  final String errorMessage;
-
-  ContactErrorState(this.errorMessage);
-}
+import 'package:test_bloc/bloc/contact_event.dart';
+import 'package:test_bloc/bloc/contact_state.dart';
+import 'package:test_bloc/models/contact.dart';
 
 class ContactBloc extends Bloc<ContactEvent, ContactState> {
   List<Contact> contacts = [];
@@ -58,7 +23,6 @@ class ContactBloc extends Bloc<ContactEvent, ContactState> {
     });
   }
 
-  @override
   Stream<ContactState> mapEventToState(ContactEvent event) async* {
     if (event is AddContactEvent) {
       contacts.add(event.contact);

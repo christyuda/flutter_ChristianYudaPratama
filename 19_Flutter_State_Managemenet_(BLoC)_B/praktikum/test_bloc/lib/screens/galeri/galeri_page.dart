@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_bloc/DetailPage.dart';
+import 'package:test_bloc/screens/galeri/detail_page.dart'; // Sesuaikan dengan lokasi DetailPage
 
 class GaleriPage extends StatefulWidget {
   @override
@@ -22,7 +22,7 @@ class _GaleriPageState extends State<GaleriPage> {
       ),
       body: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Jumlah kolom dalam grid
+          crossAxisCount: 2,
         ),
         itemCount: gambar.length,
         itemBuilder: (context, index) {
