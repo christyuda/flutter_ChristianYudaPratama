@@ -1,38 +1,30 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+// lib/bloc/contact_bloc.dart
+import 'dart:async';
+import 'package:bloc/bloc.dart';
+import 'package:test_bloc/models/contact.dart';
 import 'package:test_bloc/bloc/contact_event.dart';
 import 'package:test_bloc/bloc/contact_state.dart';
-import 'package:test_bloc/models/contact.dart';
 
 class ContactBloc extends Bloc<ContactEvent, ContactState> {
+  ContactBloc() : super(ContactInitial()); // Tambahkan konstruktor nol argumen
+
   List<Contact> contacts = [];
 
-  ContactBloc() : super(ContactInitialState()) {
-    on<AddContactEvent>((event, emit) {
-      contacts.add(event.contact);
-      emit(ContactLoadedState(List.from(contacts)));
-    });
+  @override
+  ContactState get initialState => ContactInitial();
 
-    on<EditContactEvent>((event, emit) {
-      contacts[event.index] = event.contact;
-      emit(ContactLoadedState(List.from(contacts)));
-    });
-
-    on<DeleteContactEvent>((event, emit) {
-      contacts.removeAt(event.index);
-      emit(ContactLoadedState(List.from(contacts)));
-    });
-  }
-
+  @override
   Stream<ContactState> mapEventToState(ContactEvent event) async* {
-    if (event is AddContactEvent) {
-      contacts.add(event.contact);
-      yield ContactLoadedState(List.from(contacts));
-    } else if (event is EditContactEvent) {
-      contacts[event.index] = event.contact;
-      yield ContactLoadedState(List.from(contacts));
-    } else if (event is DeleteContactEvent) {
-      contacts.removeAt(event.index);
-      yield ContactLoadedState(List.from(contacts));
+    if (event is AddContact) {
+      contacts.add(Contact(
+        id: DateTime.now().toString(),
+        name: event.name,
+        phone: event.phone,
+      ));
+      yield ContactLoaded(contacts: contacts);
+    } else if (event is DeleteContact) {
+      contacts.removeWhere((contact) => contact.id == event.contactId);
+      yield ContactLoaded(contacts: contacts);
     }
   }
 }

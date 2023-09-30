@@ -1,22 +1,26 @@
-import 'package:test_bloc/models/contact.dart';
+// lib/bloc/contact_event.dart
+import 'package:equatable/equatable.dart';
 
-abstract class ContactEvent {}
-
-class AddContactEvent extends ContactEvent {
-  final Contact contact;
-
-  AddContactEvent(this.contact);
+abstract class ContactEvent extends Equatable {
+  @override
+  List<Object?> get props => [];
 }
 
-class EditContactEvent extends ContactEvent {
-  final int index;
-  final Contact contact;
+class AddContact extends ContactEvent {
+  final String name;
+  final String phone;
 
-  EditContactEvent(this.index, this.contact);
+  AddContact({required this.name, required this.phone});
+
+  @override
+  List<Object?> get props => [name, phone];
 }
 
-class DeleteContactEvent extends ContactEvent {
-  final int index;
+class DeleteContact extends ContactEvent {
+  final String contactId;
 
-  DeleteContactEvent(this.index);
+  DeleteContact({required this.contactId});
+
+  @override
+  List<Object?> get props => [contactId];
 }
