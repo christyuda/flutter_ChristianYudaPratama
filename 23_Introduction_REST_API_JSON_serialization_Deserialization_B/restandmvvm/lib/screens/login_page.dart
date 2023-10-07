@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:restandmvvm/screens/color_list_page.dart';
+import 'package:restandmvvm/screens/home_page.dart';
+import 'package:restandmvvm/screens/second_page.dart';
 import 'package:restandmvvm/viewmodels/login_viewmodel.dart';
 
 class LoginView extends StatefulWidget {
@@ -51,7 +52,7 @@ class _LoginViewState extends State<LoginView> {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (context) =>
-                          HomePage(), // Ganti dengan halaman selanjutnya
+                          ContactPage(), // Ganti dengan halaman selanjutnya
                     ),
                   );
                 }
