@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restandmvvm/screens/first_page.dart';
 import 'package:restandmvvm/screens/second_page.dart';
+import 'package:restandmvvm/screens/third_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           FirstPage(),
           ContactView(),
-          // ThirdPage(),
+          EditPostPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -44,6 +45,14 @@ class _HomePageState extends State<HomePage> {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
                   builder: (context) => ContactView(),
+                ),
+              );
+              break;
+
+            case 2:
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => EditPostPage(),
                 ),
               );
               break;
