@@ -52,7 +52,7 @@ class _LoginViewState extends State<LoginView> {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (context) =>
-                          ContactPage(), // Ganti dengan halaman selanjutnya
+                          ContactView(), // Ganti dengan halaman selanjutnya
                     ),
                   );
                 }

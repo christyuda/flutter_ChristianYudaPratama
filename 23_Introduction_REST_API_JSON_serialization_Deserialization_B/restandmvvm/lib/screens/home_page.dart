@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
         index: _currentIndex,
         children: <Widget>[
           FirstPage(),
-          ContactPage(),
+          ContactView(),
           // ThirdPage(),
         ],
       ),
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
             case 1:
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (context) => ContactPage(),
+                  builder: (context) => ContactView(),
                 ),
               );
               break;

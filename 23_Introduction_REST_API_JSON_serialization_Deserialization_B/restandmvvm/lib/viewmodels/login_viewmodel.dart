@@ -18,23 +18,17 @@ class LoginViewModel with ChangeNotifier {
           final data = response.data as Map<String, dynamic>;
           final token = data['token'] as String;
 
-          // Lakukan sesuatu dengan token, misalnya menyimpannya atau melakukan navigasi
           _isLoggedIn = true;
 
-          // Memberitahu tampilan bahwa login berhasil
           notifyListeners();
         } else {
-          // Gagal login atau respons lainnya
           _isLoggedIn = false;
 
-          // Memberitahu tampilan bahwa login gagal
           notifyListeners();
         }
       } else {
-        // Gagal login atau respons lainnya
         _isLoggedIn = false;
 
-        // Memberitahu tampilan bahwa login gagal
         notifyListeners();
       }
     } catch (e) {
