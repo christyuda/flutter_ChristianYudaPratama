@@ -291,7 +291,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       readOnly: true,
                     ),
                     TextField(
-                      controller: _colorController,
+                      controller: _colorController,P
                       decoration: InputDecoration(
                         labelText: 'Warna',
                         hintText: 'Pilih warna',
