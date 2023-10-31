@@ -1,0 +1,13 @@
+"Pengembangan Aplikasi Mobile untuk Pemantauan dan Manajemen Tanaman Secara Real-Time"
+"Analisis Big Data untuk Meningkatkan Produktivitas Pertanian: Studi Kasus pada Penggunaan Teknologi IoT dalam Budidaya Tanaman"
+"Penerapan Machine Learning dalam Identifikasi dan Prediksi Penyakit Tanaman"
+"Penggunaan Teknologi Blockchain dalam Meningkatkan Keamanan dan Transparansi Rantai Pasokan Tanaman"
+"Sistem Informasi Geografis (SIG) untuk Pemetaan dan Analisis Pertumbuhan Tanaman Secara Spasial"
+"Penggunaan Internet of Things (IoT) dalam Pengendalian Otomatis Suhu dan Kelembaban Lingkungan untuk Budidaya Tanaman Hortikultura"
+"Pengembangan Aplikasi Pintar untuk Pemantauan Nutrisi Tanaman dan Penyiraman yang Optimal"
+"Analisis Data Sensor untuk Meningkatkan Prediksi Panen dan Kualitas Tanaman"
+"Penggunaan Teknologi Satelit dan Citra Penginderaan Jauh dalam Pengawasan Pertumbuhan Tanaman di Luar Ruangan"
+"Pemanfaatan Teknologi Kecerdasan Buatan untuk Identifikasi Hama dan Penyakit pada Tanaman Secara Otomatis"Aplikasi Teknologi Blokchain untuk Meningkatkan Keamanan serta Otentikasi Produk Pertanian Berkelanjutan"
+"Pengembangan Sistem Peringatan Dini dan Prediksi Cuaca untuk Petani dalam Pengelolaan Tanaman"
+"Penggunaan Augmented Reality (AR) untuk Pembelajaran dan Perencanaan Pertanian Berkelanjutan"
+"Integrasi Teknologi Mobile dengan Sistem Pemantauan
